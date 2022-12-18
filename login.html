@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Boostrap Index</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/style/all.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid navbar-test">
+        <a class="navbar-brand" href="#"><img src="https://i.imgur.com/u24kTiz.png" alt="" class="logo-img"></a>
+        <h3 class="me-6">韓國釜山行</h3>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item display-none">
+              <a class="nav-link active" aria-current="page" href="/index.html">回首頁</a>
+            </li>
+            <li class="nav-item ms-4 logSignPanel">
+              <a class="nav-link" href="/login.html" class="text-primary">登入註冊</a>
+            </li>
+            <li class="nav-item display-none toAdmin">
+              <a class="nav-link" href="/admin.html">前往後台</a>
+            </li>
+            <li class="nav-item">
+              <a href="/index.html" class="btn btn-secondary text-white logOutBtn">登出</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+<div class="container d-flex justify-content-between py-4 px-8">
+    <div class="left px-8">
+    <h3>登入</h3>
+    <label for="email">信箱</label>
+   <input type="email" class="mb-4 loginEmail"/>
+   <br>
+   <label for="password">密碼</label>
+   <input type="text" class="mb-4 loginPSW"/>
+   <br>
+   <button href="#" class="btn btn-primary text-white loginBtn">登入</button>
+</div>
+<div class="right px-8">
+   <h3>註冊</h3>
+    <label for="email">信箱</label>
+   <input type="email" class="mb-4 signUpEmail"/>
+   <br>
+   <label for="password">密碼</label>
+   <input type="text" class="mb-4 signUpPSW"/>
+   <br>
+   <button href="#" class="btn btn-secondary text-white signUpBtn">註冊</button>
+</div>
+  </div>
+
+    <footer class="footer">
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="./assets/js/vendors.js"></script>
+    <script src="./assets/js/all.js"></script>
+  </body>
+
+</html>
