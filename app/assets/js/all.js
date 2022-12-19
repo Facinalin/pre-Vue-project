@@ -15,6 +15,10 @@ const sightId = location.href.split("=")[1];
 const likeListArea = document.querySelector('.likeListArea'); //後台收藏
 const perSightArticle = document.querySelector('.perSightArticle');
 
+function selfRefresh(){
+  window.location.replace(location.href);
+}
+
 function checkLoggedIn(){
   return getUserId && getUserToken? true : false;
 }
@@ -224,7 +228,10 @@ function renderPerSight(dom,data){
   console.log(addToLike);
   addToLike.addEventListener('click', (e) =>{
     e.preventDefault();
-    console.log(e.target);
+    let sightId = e.target.getAttribute('data-id');
+    let obj = {};
+    obj.sightId = sightId;
+    addToLikePost(obj,addToLike,alreadyInLike);
   })
  //收藏功能記得加到這，總
 }
@@ -232,13 +239,21 @@ function renderPerSight(dom,data){
 //收藏功能
 //監聽收藏按鈕
 
-function addToLikePost(){
-  axios.post(`${api_Url}600/likes`,{})
+function addToLikePost(obj,dom1,dom2){
+  axios.post(`${api_Url}600/users/${getUserId}/likes`,obj,{
+    headers:{
+      "authorization": `Bearer ${getUserToken}`
+    }
+  })
   .then(response =>{
-  
+  console.log(response.data);
+  console.log(getUserToken);
+  dom1.classList.add('display-none');
+  dom2.classList.remove('display-none');
   })
   .catch(error =>{
     console.log(error);
+    console.log(getUserToken);
   });
 }
 
@@ -265,21 +280,42 @@ function addToLikesGet(){
 function renderAdminLikeList(dom,data){
    let likeStr = '';
    data.forEach(el =>{
-    const {title, imgUrl, description, id} = el.sight;
+    const {id} = el;
+    const {title, imgUrl, description} = el.sight;
     likeStr += `<div class="card my-4 d-flex flex-row likePerCard">
     <img src="${imgUrl}" class="card-img-top" alt="">
     <div class="card-body">
       <h5 class="card-title">${title}</h5>
       <p class="card-text">${description}</p>
-      <span class="text-success">&#10003;已收藏</span><a href="/article.html" class="btn btn-warning text-white ms-4" data-id="${id}">取消收藏</a>
+      <span class="text-success">&#10003;已收藏</span><button href="#" class="btn btn-warning text-white ms-4 deleteLikes" data-id="${id}">取消收藏</button>
     </div>
   </div>`;
     dom.innerHTML = likeStr;
    })
+   const deleteLikes = document.querySelectorAll('.deleteLikes');
+   deleteLikes.forEach(el => {
+   el.addEventListener('click', (e) =>{
+    let deleteId = e.target.getAttribute('data-id');
+   
+    axios.delete(`${api_Url}600/likes/${deleteId}`,{
+      headers:{
+        "authorization": `Bearer ${getUserToken}`
+      }
+    })
+    .then(response =>{
+      console.log(response.data);
+      alert('成功取消收藏！');
+      selfRefresh();
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+   })
+
+  })
 }
 
 
-//判定已收藏/未收藏
 
 
 
