@@ -18,6 +18,10 @@ var likeListArea = document.querySelector('.likeListArea'); //後台收藏
 
 var perSightArticle = document.querySelector('.perSightArticle');
 
+function selfRefresh() {
+  window.location.replace(location.href);
+}
+
 function checkLoggedIn() {
   return getUserId && getUserToken ? true : false;
 }
@@ -214,15 +218,28 @@ function renderPerSight(dom, data) {
   console.log(addToLike);
   addToLike.addEventListener('click', function (e) {
     e.preventDefault();
-    console.log(e.target);
+    var sightId = e.target.getAttribute('data-id');
+    var obj = {};
+    obj.sightId = sightId;
+    addToLikePost(obj, addToLike, alreadyInLike);
   }); //收藏功能記得加到這，總
 } //收藏功能
 //監聽收藏按鈕
 
 
-function addToLikePost() {
-  axios.post("".concat(api_Url, "600/likes"), {}).then(function (response) {})["catch"](function (error) {
+function addToLikePost(obj, dom1, dom2) {
+  axios.post("".concat(api_Url, "600/users/").concat(getUserId, "/likes"), obj, {
+    headers: {
+      "authorization": "Bearer ".concat(getUserToken)
+    }
+  }).then(function (response) {
+    console.log(response.data);
+    console.log(getUserToken);
+    dom1.classList.add('display-none');
+    dom2.classList.remove('display-none');
+  })["catch"](function (error) {
     console.log(error);
+    console.log(getUserToken);
   });
 }
 
@@ -247,13 +264,30 @@ function addToLikesGet() {
 function renderAdminLikeList(dom, data) {
   var likeStr = '';
   data.forEach(function (el) {
+    var id = el.id;
     var _el$sight = el.sight,
         title = _el$sight.title,
         imgUrl = _el$sight.imgUrl,
-        description = _el$sight.description,
-        id = _el$sight.id;
-    likeStr += "<div class=\"card my-4 d-flex flex-row likePerCard\">\n    <img src=\"".concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">").concat(title, "</h5>\n      <p class=\"card-text\">").concat(description, "</p>\n      <span class=\"text-success\">&#10003;\u5DF2\u6536\u85CF</span><a href=\"/article.html\" class=\"btn btn-warning text-white ms-4\" data-id=\"").concat(id, "\">\u53D6\u6D88\u6536\u85CF</a>\n    </div>\n  </div>");
+        description = _el$sight.description;
+    likeStr += "<div class=\"card my-4 d-flex flex-row likePerCard\">\n    <img src=\"".concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">").concat(title, "</h5>\n      <p class=\"card-text\">").concat(description, "</p>\n      <span class=\"text-success\">&#10003;\u5DF2\u6536\u85CF</span><button href=\"#\" class=\"btn btn-warning text-white ms-4 deleteLikes\" data-id=\"").concat(id, "\">\u53D6\u6D88\u6536\u85CF</button>\n    </div>\n  </div>");
     dom.innerHTML = likeStr;
   });
-} //判定已收藏/未收藏
+  var deleteLikes = document.querySelectorAll('.deleteLikes');
+  deleteLikes.forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var deleteId = e.target.getAttribute('data-id');
+      axios["delete"]("".concat(api_Url, "600/likes/").concat(deleteId), {
+        headers: {
+          "authorization": "Bearer ".concat(getUserToken)
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        alert('成功取消收藏！');
+        selfRefresh();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    });
+  });
+}
 //# sourceMappingURL=all.js.map
