@@ -178,7 +178,7 @@ function renderSightList(dom,data){
       <div class="card-body">
         <h5 class="card-title">${title}</h5>
         <p class="card-text">${description}</p>
-        <a href="/article.html?id=${id}" class="btn btn-primary text-white">看更多資訊...</a>
+        <a href="./article.html?id=${id}" class="btn btn-primary text-white">看更多資訊...</a>
       </div>
     </div>`;
     }else{
