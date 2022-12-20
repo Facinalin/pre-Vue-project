@@ -110,7 +110,7 @@ function logOut() {
       console.log('有點到');
       localStorage.clear();
       setTimeout(function () {
-        window.location.replace('./index.html'); //導回首頁
+        location.href = './index.html'; //導回首頁
       }, 300);
     });
   }
