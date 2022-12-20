@@ -173,7 +173,7 @@ function renderSightList(dom, data) {
         id = el.id;
 
     if (data.length > 0) {
-      str += "<div class=\"col-lg-3 card my-4 mx-3\" style=\"width: 18rem;\">\n      <img src=\"".concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">").concat(title, "</h5>\n        <p class=\"card-text\">").concat(description, "</p>\n        <a href=\"/article.html?id=").concat(id, "\" class=\"btn btn-primary text-white\">\u770B\u66F4\u591A\u8CC7\u8A0A...</a>\n      </div>\n    </div>");
+      str += "<div class=\"col-lg-3 card my-4 mx-3\" style=\"width: 18rem;\">\n      <img src=\"".concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n      <div class=\"card-body\">\n        <h5 class=\"card-title\">").concat(title, "</h5>\n        <p class=\"card-text\">").concat(description, "</p>\n        <a href=\"./article.html?id=").concat(id, "\" class=\"btn btn-primary text-white\">\u770B\u66F4\u591A\u8CC7\u8A0A...</a>\n      </div>\n    </div>");
     } else {
       return '';
     }
