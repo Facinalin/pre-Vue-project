@@ -74,9 +74,9 @@ function loginPost(obj) {
     alert('登入成功');
 
     if (admin === true) {
-      location.href = '/myAdmin.html';
+      location.href = './myAdmin.html';
     } else {
-      location.href = '/index.html';
+      location.href = './index.html';
     }
   })["catch"](function (error) {
     console.log(error);
@@ -338,7 +338,7 @@ function removeSight(id) {
   }).then(function (response) {
     console.log(response.data);
     alert('刪除成功！');
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   })["catch"](function (error) {
     console.log(error);
   });
@@ -353,7 +353,7 @@ function renderSightAtAdmin(dom, data) {
           description = el.description,
           imgUrl = el.imgUrl,
           id = el.id;
-      sightListStr += "<div class=\"card my-4 d-flex flex-row likePerCard\">\n    <a href=\"/editSight.html?id=".concat(id, "\" class=\"btn btn-danger text-white ms-4 editSight\" data-id=\"").concat(id, "\"><span>&#9999;</span><br>\u7DE8<br>\u8F2F</a>\n    <a href=\"#\" class=\"btn btn-secondary text-white ms-4 deleteSight\" data-id=\"").concat(id, "\"><span>&#9999;</span><br>\u522A<br>\u9664</a>\n    <div class=\"card-body\">\n        <h5 class=\"card-title\">").concat(title, "</h5>\n        <p class=\"card-text\">").concat(description, "</p>          \n      </div>\n    <img src=\"").concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n  </div>");
+      sightListStr += "<div class=\"card my-4 d-flex flex-row likePerCard\">\n    <a href=\"./editSight.html?id=".concat(id, "\" class=\"btn btn-danger text-white ms-4 editSight\" data-id=\"").concat(id, "\"><span>&#9999;</span><br>\u7DE8<br>\u8F2F</a>\n    <a href=\"#\" class=\"btn btn-secondary text-white ms-4 deleteSight\" data-id=\"").concat(id, "\"><span>&#9999;</span><br>\u522A<br>\u9664</a>\n    <div class=\"card-body\">\n        <h5 class=\"card-title\">").concat(title, "</h5>\n        <p class=\"card-text\">").concat(description, "</p>          \n      </div>\n    <img src=\"").concat(imgUrl, "\" class=\"card-img-top\" alt=\"\">\n  </div>");
       dom.innerHTML = sightListStr;
     });
     var sightRemoving = document.querySelectorAll('.deleteSight');
@@ -400,7 +400,7 @@ function addSightPost(obj) {
   }).then(function (response) {
     console.log(response.data);
     alert('新增景點成功！');
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   })["catch"](function (error) {
     console.log(error);
   });
@@ -465,7 +465,7 @@ function currentSightPatch(obj) {
   }).then(function (response) {
     console.log(response.data);
     alert('修改成功！');
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   })["catch"](function (error) {
     console.log(error);
   });
