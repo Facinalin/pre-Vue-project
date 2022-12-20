@@ -73,9 +73,9 @@ function loginPost(obj){
   loginPSW.value = "";
   alert('登入成功');
   if(admin === true){
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   }else{
-    location.href = '/index.html';
+    location.href = './index.html';
   }
   })
   .catch(function(error){
@@ -366,7 +366,7 @@ function removeSight(id){
   .then(response =>{
     console.log(response.data);
     alert('刪除成功！');
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   })
   .catch(error => {
     console.log(error);
@@ -379,7 +379,7 @@ function renderSightAtAdmin(dom,data){
   data.forEach(el =>{
     const {title,description,imgUrl,id} = el;
     sightListStr += `<div class="card my-4 d-flex flex-row likePerCard">
-    <a href="/editSight.html?id=${id}" class="btn btn-danger text-white ms-4 editSight" data-id="${id}"><span>&#9999;</span><br>編<br>輯</a>
+    <a href="./editSight.html?id=${id}" class="btn btn-danger text-white ms-4 editSight" data-id="${id}"><span>&#9999;</span><br>編<br>輯</a>
     <a href="#" class="btn btn-secondary text-white ms-4 deleteSight" data-id="${id}"><span>&#9999;</span><br>刪<br>除</a>
     <div class="card-body">
         <h5 class="card-title">${title}</h5>
@@ -439,7 +439,7 @@ function addSightPost(obj){
   .then(response =>{
   console.log(response.data);
   alert('新增景點成功！');
-  location.href = '/myAdmin.html';
+  location.href = './myAdmin.html';
   })
   .catch(error =>{
     console.log(error);
@@ -509,7 +509,7 @@ function currentSightPatch(obj){
   .then((response)=>{
     console.log(response.data);
     alert('修改成功！');
-    location.href = '/myAdmin.html';
+    location.href = './myAdmin.html';
   })
   .catch((error)=>{
     console.log(error);
